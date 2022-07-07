@@ -81,8 +81,31 @@ namespace ExcelToCsv
                 csv += "\r\n";
             }
             string result = csv.Remove(csv.TrimEnd().LastIndexOf(Environment.NewLine));
-            string folderPath = "C:\\CSV\\"; // CSV Export Document
-            File.WriteAllText(folderPath + "Export.csv", result);
+            /*string folderPath = "C:\\CSV\\";
+            File.WriteAllText(folderPath + "Export.csv", result);*/
+            Save(result);
+        }
+
+        private void Save(string result)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "CSV (.csv)|*.csv",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+                OverwritePrompt = true,
+                CreatePrompt = false
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (Stream s = File.Open(saveFileDialog.FileName, FileMode.CreateNew))
+                using (StreamWriter sw = new StreamWriter(s))
+                {
+                    sw.Write(result);
+                }
+            }
+
         }
     }
 }
