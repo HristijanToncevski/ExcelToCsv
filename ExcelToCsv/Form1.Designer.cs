@@ -31,8 +31,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnChoose = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,33 +66,33 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F);
-            this.label1.Location = new System.Drawing.Point(9, 377);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(325, 29);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Import File Name: Import.xlsx";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F);
-            this.label2.Location = new System.Drawing.Point(12, 406);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 377);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(322, 29);
             this.label2.TabIndex = 6;
             this.label2.Text = "Export File Name: Export.csv";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 406);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(201, 29);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Location: C:\\CSV\\";
             // 
             // ExcelToCsv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnChoose);
             this.Controls.Add(this.dataGridView1);
@@ -109,8 +109,8 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnChoose;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

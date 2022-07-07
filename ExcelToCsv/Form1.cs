@@ -17,13 +17,26 @@ namespace ExcelToCsv
         public ExcelToCsv()
         {
             InitializeComponent();
+            
         }
-     
+
         private void btnChoose_Click(object sender, EventArgs e)
         {
+            string FileName="";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Excel File";
+            openFileDialog.InitialDirectory = @"C:\";
+            openFileDialog.Filter = "Excel File|*.xlsx;*.xls";
+            openFileDialog.FilterIndex = 2;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileName = openFileDialog.FileName;
+            }
+
             ExcelApp.Application excelApp = new ExcelApp.Application();
-            ExcelApp.Workbook excelBook = excelApp.Workbooks.Open("C:\\CSV\\Import.xlsx"); // Excel Document
-            ExcelApp._Worksheet excelSheet = excelBook.Sheets[1];
+            ExcelApp.Workbook excelBook = excelApp.Workbooks.Open(FileName);
+            ExcelApp.Worksheet excelSheet = excelBook.Sheets[1];
             ExcelApp.Range excelRange = excelSheet.UsedRange;
 
             int rows = excelRange.Rows.Count;
@@ -40,6 +53,16 @@ namespace ExcelToCsv
                         dataGridView1.Rows[i - 1].Cells[j - 1].Value = excelRange.Cells[i, j].Value2.ToString();
                 }
             }
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelRange);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelSheet);
+
+            excelBook.Close();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelBook);
+
             excelApp.Quit();
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
         }
@@ -54,7 +77,7 @@ namespace ExcelToCsv
                     csv += "\"" + cell.Value + "\"";
                     csv += ",";
                 }
-                csv += "\"\",\"\",\"\"";
+                csv += "\"\",\"\",\"\",\"\"";
                 csv += "\r\n";
             }
             string result = csv.Remove(csv.TrimEnd().LastIndexOf(Environment.NewLine));
